@@ -12,7 +12,7 @@ function LandingPage() {
           <p> Whith this app you can get information about dog breeds' names and details such as their size, life span and temperament, and you can also add new ones</p>        
         
         <Link to="/home">
-            <button className="button_home">Go home</button>
+            <button className="button_home">Home</button>
         </Link>
       </div>
     </div>
