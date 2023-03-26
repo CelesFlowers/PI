@@ -1,0 +1,43 @@
+.main_container{
+    background-image: url("./backgroundland2.jpg");
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;    
+    background-position-y: center;
+    
+}
+
+.main_left_container{
+    width: 43vw;
+    padding-top: 1rem;
+    position: relative;
+}
+
+.main_left_container h1{
+    color: white;
+    text-shadow: 0 0 2px #25b687;
+    font-size: 4.5rem;
+    margin-bottom: 8%;
+}
+
+.main_left_container h3{
+    color: white;
+    text-shadow: 0 0 2px #cef605;
+    font-size: 1.4rem;
+    margin-bottom: 8%;
+}
+
+.main_left_container .left_paragraph{
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3%;
+}
+
+.left_paragraph p{
+    color: white;
+    text-shadow: 0 0 1px #cef605;
+    font-size: 1rem;
+    width: 23rem;
+    text-align:left
+}
