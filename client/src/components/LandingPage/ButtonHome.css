@@ -31,10 +31,10 @@ button{
     top: 0;
     left: 0;
     position: absolute;
-    background-color: white;
+    background-color: rgb(249, 107, 13);
     height: 100%;
     width: 100%;
-    transition: transform 0.5s linear;
+    transition: transform 0.5s all;
     z-index: -10;
 }
 

@@ -8,7 +8,7 @@ import {
   FilterByTemperament,
   OrderByName,
   OrderByWeight,
-} from "../../redux/actions";
+} from "../../Redux/actions";
 import Card from "../Card/Card";
 import Paginate from "../Paginate/Paginate";
 import SearchBar from "../SearchBar/SearchBar"
