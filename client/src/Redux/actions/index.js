@@ -1,5 +1,5 @@
 import axios from "axios";
-//const urlMyApi = "http://localhost:3001";
+const urlMyApi = "http://localhost:3001";
 
 export function getAllDogs() {
     return async function (dispatch) {
@@ -13,7 +13,7 @@ export function getAllDogs() {
 
 export function getTemperaments() {
   return async function (dispatch) {
-      var json = await axios.get("http://localhost:3001/temperaments")
+      var json = await axios.get("http://localhost:3001/temperaments"); //axios.get(`${urlMyApi}/temperament`)
       return dispatch({
           type: "GET_TEMPERAMENTS",
           payload: json.data,

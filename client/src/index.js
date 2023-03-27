@@ -4,9 +4,10 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from "react-redux";
-import store from "../src/Redux/store";
+import store from "../src/redux/store";
 import axios from 'axios'
 import dotenv from "dotenv"
+import { BrowserRouter } from 'react-router-dom';
 dotenv.config();
 
 axios.defaults.baseURL = process.env.React_APP_API || "http://localhost:3001";
@@ -17,7 +18,7 @@ ReactDOM.render(
     <App />
   </React.StrictMode>
   </Provider>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

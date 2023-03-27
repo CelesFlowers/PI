@@ -8,7 +8,7 @@ import {
   FilterByTemperament,
   OrderByName,
   OrderByWeight,
-} from "../../Redux/actions";
+} from "../../redux/actions";
 import Card from "../Card/Card";
 import Paginate from "../Paginate/Paginate";
 import SearchBar from "../SearchBar/SearchBar"
@@ -64,7 +64,7 @@ function Home() {
         <div className={`${style.header_container_left}`}>
 
           <Link to="/">
-            <div className={`${style.logo}`}>Dog Breed Pedia</div> {/* logo del home */}
+            <div className={`${style.logo}`}>Dogpedia</div> {/* logo del home */}
           </Link>
           
           <div className={`${style.header_left}`}>
