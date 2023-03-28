@@ -49,6 +49,13 @@ export function OrderByName(payload) {
     }
 };
 
+export function OrderBySource(payload) {
+    return { 
+        type: "ORDER_BY_SOURCE",
+        payload
+    }
+};
+
 export function OrderByWeight(payload) {
     return { 
         type: "ORDER_BY_WEIGHT",

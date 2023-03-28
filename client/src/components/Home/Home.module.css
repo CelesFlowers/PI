@@ -6,8 +6,8 @@ button{
 }
 
 .header{
-    display: flex;
-    flex-direction: row;
+    display:flex;
+    flex-direction:initial;
     justify-content:space-between;
     background: none;
 }

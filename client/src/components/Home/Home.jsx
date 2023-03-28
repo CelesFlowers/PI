@@ -7,6 +7,7 @@ import {
   getTemperaments,
   FilterByTemperament,
   OrderByName,
+  OrderBySource,
   OrderByWeight,
 } from "../../redux/actions";
 import Card from "../Card/Card";
@@ -49,6 +50,12 @@ function Home() {
   const handleOrderByName = (e) => {
     e.preventDefault();
     dispatch(OrderByName(e.target.value));
+    setOrden(`Ordenado ${e.target.value}`);
+  };
+
+  const handleOrderBySource = (e) => {
+    e.preventDefault();
+    dispatch(OrderBySource(e.target.value));
     setOrden(`Ordenado ${e.target.value}`);
   };
 
@@ -96,6 +103,15 @@ function Home() {
                         <option value={temp.name}  key={temp.id}>{temp.name}</option>
                     ))
                   }
+              </select>
+
+              <select onChange={handleOrderBySource}>
+                <option disabled selected defaultValue>
+                  Source
+                </option>
+                <option value="All">All</option>
+                <option value="Db">DB</option>
+                <option value="Api">API</option>
               </select>
 
             </div>

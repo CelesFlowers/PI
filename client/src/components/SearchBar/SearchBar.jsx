@@ -20,7 +20,7 @@ export default function SearchBar() {
     return(
         <div className={style.searchbar_container}>
             <input className={`${style.searchbar}`} type="text" onChange={handleInput} placeholder="Search..."/>
-            <button className={`${style.searchbar_button}`} type="submit" onClick={handleSubmit}>
+            <button className={`${style.searchbar_button}`} type="submit" onClick={handleSubmit}> Find
                 <i className="fa-solid fa-magnifying-glass"></i>
             </button>
         </div>
