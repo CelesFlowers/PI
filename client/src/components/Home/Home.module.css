@@ -2,7 +2,7 @@ button{
     cursor: pointer; 
     border: none;
     position: relative;
-    background-color: #25b687;
+    background-color:rgb(249, 107, 13);
 }
 
 .header{
@@ -120,7 +120,7 @@ button{
     width: 92.5%;
     border-radius: 15px;
     overflow: hidden;
-    position: relative;
+    position:inherit;
 }
 
 .container_card:hover{

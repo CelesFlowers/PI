@@ -1,11 +1,9 @@
 .App {
   text-align: center; 
-  /* background-color: rgb(249, 255, 159); */
-  background-image: url("grass2.jpg");
-    /* height: 100vh; */
-    background-repeat: no-repeat;
-    background-size: cover;    
-    background-position-y: center; 
+  background-image: url("grass2.jpg");  
+  background-repeat: no-repeat;
+  background-size: cover;    
+  background-position-y: center; 
   
 }
 

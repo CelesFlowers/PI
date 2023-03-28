@@ -119,7 +119,7 @@ function Home() {
             <div className={`${style.container_card}`} key={el.id}>
               <Link to={"/dog-detail/"+el.id}>
                 {
-                  <Card key={el.id} image={el.image} name={el.name} temperaments={el.temperaments[0].name ? el.temperaments.map(el => el.name) : el.temperaments}/>
+                  <Card key={el.id} image={el.image} name={el.name} weight={el.weight} temperaments={el.temperaments[0].name ? el.temperaments.map(el => el.name) : el.temperaments}/>
                   //si temperaments viene en un formato distinto desde la BD
                 }
               </Link>

@@ -6,9 +6,9 @@ a{
 .main_container{
     font-size: 0.7rem;
     text-decoration: none;
-    max-height: 50vh;
+    max-height: 75vh;
     overflow: hidden;
-    color: #575025;
+    color: #f8d702;
     position: relative;
 }
 
@@ -27,9 +27,9 @@ a{
     width: 100%;
     text-align: center;
     border-radius: 10px;
-    font-size: 2.2rem;
+    font-size: 2rem;
     left: 0%;
-    background-color: rgba(153, 153, 153, 0.5);
+    background-color: rgba(217, 247, 45, 0.5);
 }
 
 .image_container{
@@ -54,10 +54,10 @@ a{
 .temperaments_container{ /*que hermoso es grid*/
     text-decoration: none;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 0 0.7rem;
+    grid-template-columns: repeat(2, 2fr);
+    grid-gap: 1px;
 }
 
 .temperaments_container h3{
-    margin: 0 0.3rem 0.4rem 0.3rem;
+    margin: 0 0.2rem 0.3rem 0.2rem;
 }
