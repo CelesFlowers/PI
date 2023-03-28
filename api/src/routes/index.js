@@ -90,7 +90,7 @@ router.get("/dogs/:idRaza", async(req, res) => {//traer la info de un perro por 
     }
 });
 
-router.get("/temperament", async (req, res) => {
+router.get("/temperaments", async (req, res) => {
     const temperamentsApi = await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${MY_API_KEY}`);
     const temperaments = temperamentsApi.data.map(t => t.temperament);
     const temps = temperaments.toString().split(",");

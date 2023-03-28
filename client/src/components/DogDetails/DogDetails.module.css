@@ -10,7 +10,7 @@
 
 .sub_container{
     width: 105%;
-    border: 0.5rem solid #25b687;
+    border: 0.5rem solid rgb(249, 107, 13);
     border-radius: 15px;
 
     box-shadow: 14px 15px 3px -4px rgba(0,0,0,0.75);
@@ -47,9 +47,9 @@ button{
     transition: color 0.5s linear;
     z-index: 100;
     border: 0.1rem solid white;
-    outline: 0.1rem solid #25b687;
-    text-shadow: 0 0 3px #25b687;
-    color: #25b687;
+    outline: 0.1rem solid rgb(249, 107, 13);
+    text-shadow: 0 0 3px rgb(249, 107, 13);
+    color: rgb(249, 107, 13);
 }
 
 .button_home:hover{
@@ -63,7 +63,7 @@ button{
     top: 0;
     left: 0;
     position: absolute;
-    background-color: #25b687;
+    background-color: rgb(249, 107, 13);
     height: 100%;
     width: 100%;
     transition: transform 0.5s linear;

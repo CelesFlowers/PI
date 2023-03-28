@@ -64,7 +64,7 @@ function Home() {
         <div className={`${style.header_container_left}`}>
 
           <Link to="/">
-            <div className={`${style.logo}`}>Dogpedia</div> {/* logo del home */}
+            <div className={`${style.logo}`}>DOGPEDIA</div> {/* logo del home */}
           </Link>
           
           <div className={`${style.header_left}`}>

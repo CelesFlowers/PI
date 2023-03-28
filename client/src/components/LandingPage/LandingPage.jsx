@@ -7,7 +7,7 @@ function LandingPage() {
   return (
     <div className={`${style.main_container}`}>
       <div className={`${style.main_left_container}`}>
-        <h1 className={`${style.titleApp}`} >BREEDPEDIA</h1>
+        <h1 className={`${style.titleApp}`} >DOGPEDIA</h1>
         <h3>Learn more about your best friend!</h3>
         <div className={`${style.left_paragraph}`}>
           <p>Whith this app you can get information about dog breeds' names and details such as their size, life span and temperament, and you can also add new ones!</p>

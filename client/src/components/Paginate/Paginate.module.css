@@ -14,11 +14,11 @@
 }
 
 .li_container button{
-    color: #575025;
+    color: rgb(249, 107, 13);
     background-color: white;
     width: 2.1rem;
     padding: 0.5rem 0.7rem;
     border-radius: 25%;
-    border: 1px solid #575025;
+    border: 1px solid rgb(249, 107, 13);
     text-align: center;
 }
