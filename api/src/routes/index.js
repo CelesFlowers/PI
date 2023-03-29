@@ -133,7 +133,7 @@ router.post("/dog", async (req, res) => {
      height: fixedHeight,
      weight: fixedWeight,
      life_span,
-     image: image ? image : "https://www.publicdomainpictures.net/pictures/260000/velka/dog-face-cartoon-illustration.jpg",
+     image: image ? image : "https://www.sanantonio.gov/portals/0/Images/ACS/Pictures/adoptdontshop.jpg",
     })
  
     let associatedTemp = await Temperament.findAll({
