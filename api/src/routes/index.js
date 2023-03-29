@@ -39,6 +39,7 @@ const getApiData = async() => {
             temperaments: temperamentArray,
             life_span: el.life_span,
             image: el.image.url,
+            createdInDb: false,
         }
     })
 return apiInfo;

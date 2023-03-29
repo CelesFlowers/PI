@@ -11,7 +11,7 @@ const intialState = {
   dogs: [],
   temperaments: [],
   allDogs: [],
-  details: [],  
+  details: [],
 };
 
 const rootReducer = (state = intialState, action) => {
@@ -84,25 +84,25 @@ const rootReducer = (state = intialState, action) => {
       };
 
       case "ORDER_BY_SOURCE":
-        const filtrado = state.dogsCopy
+        const filtrado = state.allDogs
     if(action.payload === "All"){
         return {
             ...state,
-            Dogs: filtrado
+            dogs: filtrado
         }
     }
     if(action.payload === "Api"){
         return {
             ...state,
-            Dogs: filtrado.filter(e => e.createdInDb === false)
+            dogs: filtrado.filter(e => e.createdInDb === false)
         }
     }
     if(action.payload === "Db"){
         return {
             ...state,
-            Videogames: filtrado.filter(e => e.createdInDb === true)
+            dogs: filtrado.filter(e => e.createdInDb === true)
         }
-    }
+    } return state;
       
 
     case "ORDER_BY_WEIGHT":
