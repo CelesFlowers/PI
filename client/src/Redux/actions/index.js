@@ -1,5 +1,5 @@
 import axios from "axios";
-const urlMyApi = "http://localhost:3001";
+//const urlMyApi = "http://localhost:3001";
 
 export function getAllDogs() {
     return async function (dispatch) {
@@ -32,6 +32,7 @@ export function getBreed(payload) {//dogs by name
     return async function (dispatch) {//Dispatch que podemos usar gracias a la asincronia provista por el middleware thunk
         try {
             var json = await axios.get(`/dogs?name=${payload}`) //axios.get(`${urlMyApi}/dogs?name=${payload}`)
+            if (json.data)
             return dispatch ({
                 type: "GET_BREED",
                 payload: json.data
@@ -80,7 +81,7 @@ export function showDogDetails(id) {
 
 export function postDog(payload) {
     return async function () {
-        const data = await axios.post("/dog", payload); //axios.post("http://localhost:3001/dog"
+        const data = await axios.post("/dogs", payload); //axios.post("http://localhost:3001/dog"
         return data;
     }
 }

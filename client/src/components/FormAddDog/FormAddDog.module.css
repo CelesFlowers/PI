@@ -33,19 +33,24 @@
     top: 0;
     left: 0;
     position: absolute;
-    background-color: white;
+    background-color: rgb(243, 239, 237);
     height: 100%;
     width: 100%;
     transition: transform 0.5s linear;
     z-index: -10;
 }
 
-.button_to_home::before{ transform: rotateY(90deg); }
+/* .button_to_home::before{ transform: rotateY(90deg); } */
 .button_to_home::after{ transform: rotateX(90deg); }
 
-.button_to_home:hover::after,
+/* .button_to_home:hover::after{
+    transition:linear;
+} */
 .button_to_home:hover::before{
-    transform: rotate(0);
+    
+    transition: color 0.5s linear;
+    background-color: rgb(249, 107, 13);
+    /* background: none; */
 }
 
 
@@ -140,6 +145,7 @@ form{
 .button_add_dog{
     font-size: 1rem;
     background-color: rgb(249, 107, 13);
+    transition: color 0.5s linear
 }
 
 .button_add_dog{

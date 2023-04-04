@@ -22,7 +22,7 @@
     text-align: left;
     left: 25%;
     top: 25%;
-    color: #575025;
+    color: #f8fc33;
     /* background-color: #25b687; */
     padding: 1rem 0 1rem 1rem;
 }
@@ -74,10 +74,10 @@ button{
 
 .button_home::after{ transform: rotateX(90deg); }
 
-.button_home:hover::before,
+/* .button_home:hover::before,
 .button_home:hover::after{ 
     transform: rotate(0);
-}
+} */
 
 
 .sub_container img{
