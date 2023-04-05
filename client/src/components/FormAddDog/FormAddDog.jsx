@@ -3,22 +3,39 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getTemperaments, postDog } from "../../redux/actions";
-
 import style from "../FormAddDog/FormAddDog.module.css";
 
 const validate = (form) => {
     let errors = {}
     if(!form.name) {
-        errors.name = "Name is required, it should not contain numbers"
+        errors.name = "Breed is required, it should not contain numbers"
     }
-    if(!form.min_height || !form.max_height) {
-        errors.height = "Height is required"
+    if(form.name.length !== 0){
+        if(!/^[a-z A-Z,.'-]+$/.test(form.name)) {
+            errors.name = "Not valid breed name, should not contain numbers";
+        }
     }
-    if(!form.min_weight || !form.max_weight) {
-        errors.weight = "Weight is required"
+    if(!form.min_height || !form.max_height || isNaN(form.min_height) || isNaN(form.max_height)) {
+        errors.height = "Height is required & should be numbers"
+    }
+    if (parseInt(form.min_height) >= parseInt(form.max_height)) {
+        errors.height = "Min height should be lower than max height"
+    }
+    
+    if(!form.min_weight || !form.max_weight || isNaN(form.min_weight) || isNaN(form.max_weight)) {
+        errors.weight = "Weight is required & should be numbers"
+    }
+    if (parseInt(form.min_weight) >= parseInt(form.max_weight)) {
+        errors.weight = "Min weight should be lower than max weight"
     }
     if(!form.life_span) {
         errors.life_span = "Lifespan is required, type only numbers separated by a dash (-)"
+    }
+    if(/[a-zA-Z]/.test(form.life_span)){
+        errors.life_span = "Type only numbers separated by a dash (-)"
+    }
+    if(form.life_span.length && !/^(\d{1,2})-(\d{1,2})$/.test(form.life_span)){
+        errors.life_span = "Type only numbers separated by a dash (-)"
     }
     return errors
 }
@@ -55,14 +72,18 @@ export default function FormAddDog() {
     }, [dispatch]);
 
     useEffect(()=>{
-        if (form.name.length > 0 && form.min_height.length > 0  && form.max_height.length > 0 && form.min_weight.length > 0 && form.max_weight.length > 0) setButton(false)
-        else setButton(true)
+        if (form.name.length > 0 &&  !/\d/.test(form.name) && form.min_height.length > 0 && /^\d+$/.test(form.min_height) && form.max_height.length > 0 && /^\d+$/.test(form.max_height) && form.min_height <= form.max_height && form.min_weight.length > 0 && /^\d+$/.test(form.min_weight) && /^\d+$/.test(form.max_weight) && form.max_weight.length > 0 && form.min_weight <= form.max_weight && form.life_span.length > 0 && !/[a-zA-Z]/.test(form.life_span) && /^(\d{1,2})-(\d{1,2})$/.test(form.life_span)) setButton(false)
+        else  setButton(true)
     }, [form, setButton]);
+    
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        
+          
         dispatch(postDog(form));
-        alert("The new dog was added successfully");
+        alert("The new breed was added successfully");
         setForm({
             name: "",
             min_height: "",
@@ -73,6 +94,7 @@ export default function FormAddDog() {
             image: "",
             temperaments: []
         });
+        
     }
     
     const handleChange = (e) => {
@@ -135,7 +157,7 @@ export default function FormAddDog() {
                     <div className={style.error_form}>{errors.weight && <p>{errors.weight}</p>}</div>{/* espacio para agregar error */}
 
                     <div className="life-span-container">
-                        <input type="text" autoComplete="off" name="life_span" value={form.life_span} placeholder="lifespan exam: 10 - 12" onChange={(e) => handleChange(e)}/>
+                        <input type="text" autoComplete="off" name="life_span" value={form.life_span} placeholder="lifespan exam: 10-12" onChange={(e) => handleChange(e)}/>
                     </div>
                     <div className={style.error_form}>{errors.life_span && <p>{errors.life_span}</p>}</div>{/* espacio para agregar error */}
 
