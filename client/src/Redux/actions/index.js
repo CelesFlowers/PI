@@ -38,7 +38,7 @@ export function getBreed(payload) {//dogs by name
                 payload: json.data
             })
         } catch (error) {
-            console.log(error);
+            return  alert(`Dog not Found!`)
         }
     }
 };

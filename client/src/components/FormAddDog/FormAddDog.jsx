@@ -78,8 +78,8 @@ export default function FormAddDog() {
     
 
     const handleSubmit = (e) => {
-        e.preventDefault();        
-          
+        e.preventDefault();  
+                     
         dispatch(postDog(form));
         alert("The new breed was added successfully");
         setForm({
@@ -93,6 +93,7 @@ export default function FormAddDog() {
             temperaments: []
         });
         
+    
     }
     
     const handleChange = (e) => {

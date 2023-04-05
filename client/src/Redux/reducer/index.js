@@ -47,18 +47,11 @@ const rootReducer = (state = intialState, action) => {
           } //todos los perros en la posicion de ese momento
         }
       }
-      const filterDB = [];
-            allDogs.forEach(e => {
-                if(typeof e.id === 'string'){
-                    e.temperament?.forEach(t => {
-                        if(t === action.payload) filterDB.push(t);
-                    })
-               }
-            })
+      
       return {
         //return funciona correcto
         ...state,
-        dogs: filteredDogs.concat(filterDB)
+        dogs: filteredDogs//.concat(filterDB)
       };
     case "GET_BREED":
       return {
