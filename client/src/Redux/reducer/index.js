@@ -61,7 +61,7 @@ const rootReducer = (state = intialState, action) => {
     case "ORDER_BY_NAME":
       const sortedName =
         action.payload === "A-Z"
-          ? state.allDogs.sort((a, b) => {
+          ? state.dogs.sort((a, b) => {
               if (a.name > b.name) {
                 return 1;
               }
@@ -70,7 +70,7 @@ const rootReducer = (state = intialState, action) => {
               }
               return 0;
             })
-          : state.allDogs.sort((a, b) => {
+          : state.dogs.sort((a, b) => {
               if (a.name > b.name) {
                 return -1;
               }
