@@ -50,6 +50,7 @@ function Home() {
   const handleOrderByName = (e) => {
     e.preventDefault();
     dispatch(OrderByName(e.target.value));
+    setCurrentPage(1);
     setOrden(`Ordenado ${e.target.value}`);
   };
 
@@ -62,6 +63,7 @@ function Home() {
   const handleOrderByWeight = (e) => {
     e.preventDefault();
     dispatch(OrderByWeight(e.target.value));
+    setCurrentPage(1);
     setOrden(`Ordenado ${e.target.value}`);
   };
 
