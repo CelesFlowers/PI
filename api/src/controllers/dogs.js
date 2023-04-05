@@ -50,16 +50,35 @@ return apiInfo;
 //-- Get data from the database posgrest--//
 
 const getFromDb = async () => {
-    return await Breed.findAll({        
-          include: [{
+    let dogDB =  await Breed.findAll({        
+          include: {
             model: Temperament,
             attributes: ["name"],
             through: {
               attributes: []
             }
-          }]
+          }
+          
         }
     )
+
+    const tempDB = dogDB.map((el) => {
+        return {
+            id: el.id,
+            name: el.name,
+            height: el.height,
+            weight: el.weight,
+            life_span: el.life_span + ' years',
+            image: el.image,
+            createdInDb: true,
+            temperaments: el.temperaments?.map(temperaments => temperaments.name),
+       
+        
+        };
+        });
+    
+        return tempDB
+    
 }
 //combine data from API and database
 const getAllDogs = async () => {
