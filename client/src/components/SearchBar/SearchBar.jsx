@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getBreed } from "../../redux/actions";
+import { getBreed } from "../../Redux/actions";
 import style from "../SearchBar/SearchBar.module.css";
 
 export default function SearchBar() {
