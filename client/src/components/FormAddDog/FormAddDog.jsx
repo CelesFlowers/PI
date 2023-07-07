@@ -77,11 +77,6 @@ export default function FormAddDog() {
         dispatch(getTemperaments());
     }, [dispatch]);
 
-    // useEffect(()=>{
-    //     if (form.name.length > 0 &&  !/\d/.test(form.name) && form.min_height.length > 0 && /^\d{1,2}$/.test(form.min_height) && form.max_height.length > 0 && /^\d{1,2}$/.test(form.max_height) && form.min_height <= form.max_height && form.min_weight.length > 0 && /^\d+$/.test(form.min_weight) && /^\d+$/.test(form.max_weight) && form.max_weight.length > 0 && form.min_weight <= form.max_weight && form.life_span.length > 0 && !/[a-zA-Z]/.test(form.life_span) && /^(\d{1,2})-(\d{1,2})$/.test(form.life_span)) setButton(false)
-    //     else  setButton(true)
-    // }, [form, setButton]);
-
     useEffect(() => {
         if (
           form.name.length > 0 &&
