@@ -84,21 +84,24 @@ export default function FormAddDog() {
           /^\d{1,2}(\.\d{1,2})?$/.test(form.min_height) &&
           form.max_height.length > 0 &&
           /^\d{1,2}(\.\d{1,2})?$/.test(form.max_height) &&
-          parseFloat(form.min_height) <= parseFloat(form.max_height) &&
+          parseFloat(form.min_height) < parseFloat(form.max_height) &&
           form.min_weight.length > 0 &&
           /^\d{1,2}(\.\d{1,2})?$/.test(form.min_weight) &&
           form.max_weight.length > 0 &&
           /^\d{1,2}(\.\d{1,2})?$/.test(form.max_weight) &&
-          parseFloat(form.min_weight) <= parseFloat(form.max_weight) &&
+          parseFloat(form.min_weight) < parseFloat(form.max_weight) &&
           form.life_span.length > 0 &&
           !/[a-zA-Z]/.test(form.life_span) &&
-          /^(\d{1,2})-(\d{1,2})$/.test(form.life_span)
+          /^(\d{1,2})-(\d{1,2})$/.test(form.life_span) &&
+          parseFloat(form.min_height) <= parseFloat(form.max_height) &&
+          form.min_height !== form.max_height
         ) {
           setButton(false);
         } else {
           setButton(true);
         }
       }, [form, setButton]);
+      
       
     
 
