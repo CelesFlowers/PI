@@ -37,6 +37,12 @@ const validate = (form) => {
     if(form.life_span.length && !/^(\d{1,2})-(\d{1,2})$/.test(form.life_span)){
         errors.life_span = "Type only numbers separated by a dash (-)"
     }
+    if (form.life_span.length) {
+        const [minLifespan, maxLifespan] = form.life_span.split('-');
+        if (parseInt(minLifespan) >= parseInt(maxLifespan)) {
+            errors.life_span = "Min lifespan should be lower than max lifespan";
+        }
+    }
     return errors
 }
 
