@@ -94,13 +94,15 @@ export default function FormAddDog() {
           !/[a-zA-Z]/.test(form.life_span) &&
           /^(\d{1,2})-(\d{1,2})$/.test(form.life_span) &&
           parseFloat(form.min_height) <= parseFloat(form.max_height) &&
-          form.min_height !== form.max_height
+          form.min_height !== form.max_height &&
+          parseInt(form.life_span.split("-")[0]) < parseInt(form.life_span.split("-")[1])
         ) {
           setButton(false);
         } else {
           setButton(true);
         }
       }, [form, setButton]);
+      
       
       
     
