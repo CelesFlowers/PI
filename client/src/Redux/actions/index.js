@@ -21,6 +21,13 @@ export function getTemperaments() {
     }  
 };
 
+export const selectTemperament = (temperament) => {
+    return {
+      type: "SELECT_TEMPERAMENT",
+      payload: temperament,
+    };
+  };
+
 export function FilterByTemperament(payload) {
     return{
         type: "GET_FILTER_TEMPERAMENTS",

@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getTemperaments, postDog } from "../../Redux/actions";
+import { getTemperaments, postDog, selectTemperament } from "../../Redux/actions";
 import style from "../FormAddDog/FormAddDog.module.css";
 
 const validate = (form) => {
@@ -50,6 +50,7 @@ export default function FormAddDog() {
     
     const dispatch = useDispatch();
     const temperaments = useSelector((state) => state.temperaments);
+    const selectedTemperament = useSelector((state) => state.selectedTemperament);
 
     const [button, setButton] = useState(true);
     const [errors, setErrors] = useState({
@@ -139,18 +140,21 @@ export default function FormAddDog() {
     }
     
     const handleSelect = (e) => {
-        setForm({
-            ...form,
-            temperaments: [...form.temperaments, e.target.value]
-        })
-    }
-
-    const handleDelete = (el) => {
-        setForm({
-            ...form,
-            temperaments: form.temperaments.filter(temp => temp !== el)
-        })
-    }
+        const selectedTemperament = e.target.value;
+        setForm((prevForm) => ({
+          ...prevForm,
+          temperaments: [...prevForm.temperaments, selectedTemperament],
+        }));
+      };
+      
+      const handleDelete = (el) => {
+        const updatedTemperaments = form.temperaments.filter((temp) => temp !== el);
+        setForm((prevForm) => ({
+          ...prevForm,
+          temperaments: updatedTemperaments,
+        }));
+      };
+      
 
     return(
         <div className={style.main_wrapper}>
@@ -200,12 +204,24 @@ export default function FormAddDog() {
                     </div>
 
                     <div className={""}>
-                        <select className={style.select_temperaments} onChange={handleSelect}>
-                            <option disabled selected>Temperaments</option>
-                            {temperaments.map(d => (                    
-                                <option value={d.name} key={d.name+Math.random()} className={style.option_temperament}>{d.name}</option> //key de elementos de temperamentos, eliminar el repetido reserved
-                            ))}
-                        </select>
+                    <select
+    className={style.select_temperaments}
+    onChange={handleSelect}
+    value={selectedTemperament}
+  >
+    <option disabled value="">
+      Temperaments
+    </option>
+    {temperaments.map((d) => (
+      <option
+        value={d.name}
+        key={d.name + Math.random()}
+        className={style.option_temperament}
+      >
+        {d.name}
+      </option>
+    ))}
+  </select>
                     </div>
 
                     <div className={style.container_button_add_dog}>
@@ -221,11 +237,11 @@ export default function FormAddDog() {
                     </div>
 
                     <div className={style.container_temperaments}>
-                        {form.temperaments.map(el => 
-                        <div className={style.element_temperament} key={el} onClick={() => handleDelete(el)}>
-                            <p>{`${el}`}</p>
-                        </div>    
-                        )}
+                    {form.temperaments.map((el, index) => (
+  <div className={style.element_temperament} key={index} onClick={() => handleDelete(el)}>
+    <p>{el}</p>
+  </div>
+))}
                     </div>
                 </div>
             </div>

@@ -12,6 +12,7 @@ const intialState = {
   temperaments: [],
   allDogs: [],
   details: [],
+  selectedTemperament: "",
 };
 
 const rootReducer = (state = intialState, action) => {
@@ -53,6 +54,13 @@ const rootReducer = (state = intialState, action) => {
         ...state,
         dogs: filteredDogs//.concat(filterDB)
       };
+
+      case "SELECT_TEMPERAMENT":
+      return {
+        ...state,
+        selectedTemperament: action.payload,
+      };
+      
     case "GET_BREED":
       return {
         ...state,
