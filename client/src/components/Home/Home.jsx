@@ -45,6 +45,7 @@ function Home() {
   const handleFilterByTemperament = (e) => {
     e.preventDefault();    
     dispatch(FilterByTemperament(e.target.value));
+    setCurrentPage(1);
   };
 
   const handleOrderByName = (e) => {
