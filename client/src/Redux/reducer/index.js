@@ -1,13 +1,4 @@
-// import {
-//   GET_ALL_DOGS,
-//   GET_TEMPERAMENTS,
-//   GET_FILTER_TEMPERAMENTS,
-//   GET_BREED,
-//   ORDER_BY_NAME,
-//   ORDER_BY_WEIGHT,
-// } from "../types/index";
-
-const intialState = {
+const initialState = {
   dogs: [],
   temperaments: [],
   allDogs: [],
@@ -15,12 +6,12 @@ const intialState = {
   selectedTemperament: "",
 };
 
-const rootReducer = (state = intialState, action) => {
+const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case "GET_ALL_DOGS":
-      action.payload.forEach(element => {
+      action.payload.forEach((element) => {
         if (!element.temperaments[0]) {
-          element.temperaments[0] = "no-temperaments" //eliminamos arreglos vacios de temperamentos
+          element.temperaments[0] = "no-temperaments";
         }
       });
       return {
@@ -28,11 +19,12 @@ const rootReducer = (state = intialState, action) => {
         dogs: action.payload,
         allDogs: action.payload,
       };
+
     case "GET_TEMPERAMENTS":
-      const filteresTemp = action.payload.filter((temp) => temp.name !== ""); //eliminar razas con strings vacios
+      const filteredTemps = action.payload.filter((temp) => temp.name !== "");
       return {
         ...state,
-        temperaments: filteresTemp,
+        temperaments: filteredTemps,
       };
 
     case "GET_FILTER_TEMPERAMENTS":
@@ -45,109 +37,80 @@ const rootReducer = (state = intialState, action) => {
           let found = allDogs[i].temperaments.find((t) => t === action.payload);
           if (found) {
             filteredDogs.push(allDogs[i]);
-          } //todos los perros en la posicion de ese momento
+          }
         }
       }
-      
+
       return {
-        //return funciona correcto
         ...state,
-        dogs: filteredDogs//.concat(filterDB)
+        dogs: filteredDogs,
       };
 
-      case "SELECT_TEMPERAMENT":
+    case "SELECT_TEMPERAMENT":
       return {
         ...state,
         selectedTemperament: action.payload,
       };
-      
+
     case "GET_BREED":
       return {
         ...state,
         dogs: action.payload,
       };
+
     case "ORDER_BY_NAME":
-      const sortedName =
-        action.payload === "A-Z"
-          ? state.dogs.sort((a, b) => {
-              if (a.name > b.name) {
-                return 1;
-              }
-              if (b.name > a.name) {
-                return -1;
-              }
-              return 0;
-            })
-          : state.dogs.sort((a, b) => {
-              if (a.name > b.name) {
-                return -1;
-              }
-              if (b.name > a.name) {
-                return 1;
-              }
-              return 0;
-            });
+      const sortedName = action.payload === "A-Z"
+        ? [...state.allDogs].sort((a, b) => a.name.localeCompare(b.name))
+        : [...state.allDogs].sort((a, b) => b.name.localeCompare(a.name));
+
       return {
         ...state,
         dogs: sortedName,
       };
 
-      case "ORDER_BY_SOURCE":
-        const filtrado = state.allDogs
-    if(action.payload === "All"){
+    case "ORDER_BY_SOURCE":
+      const filtered = state.allDogs;
+      if (action.payload === "All") {
         return {
-            ...state,
-            dogs: filtrado
-        }
-    }
-    if(action.payload === "Api"){
+          ...state,
+          dogs: filtered,
+        };
+      }
+      if (action.payload === "Api") {
         return {
-            ...state,
-            dogs: filtrado.filter(e => e.createdInDb === false)
-        }
-    }
-    if(action.payload === "Db"){
+          ...state,
+          dogs: filtered.filter((e) => e.createdInDb === false),
+        };
+      }
+      if (action.payload === "Db") {
         return {
-            ...state,
-            dogs: filtrado.filter(e => e.createdInDb === true)
-        }
-    } return state;
-      
+          ...state,
+          dogs: filtered.filter((e) => e.createdInDb === true),
+        };
+      }
+      return state;
 
     case "ORDER_BY_WEIGHT":
       const sortedWeight =
         action.payload === "min_weight"
-          ? state.dogs.sort((a, b) => {
-              if (parseInt(a.weight[1]) > parseInt(b.weight[1])) {
-                return 1;
-              }
-              if (parseInt(b.weight[1]) > parseInt(a.weight[1])) {
-                return -1;
-              }
-              return 0;
-            })
-          : state.dogs.sort((a, b) => {
-              if (parseInt(a.weight[1]) > parseInt(b.weight[1])) {
-                return -1;
-              }
-              if (parseInt(b.weight[1]) > parseInt(a.weight[1])) {
-                return 1;
-              }
-              return 0;
-            });
+          ? [...state.dogs].sort((a, b) => parseInt(a.weight[1]) - parseInt(b.weight[1]))
+          : [...state.dogs].sort((a, b) => parseInt(b.weight[1]) - parseInt(a.weight[1]));
+
       return {
         ...state,
         dogs: sortedWeight,
       };
+
     case "SHOW_DOG_DETAILS":
-      let myDetails = action.payload
-      if (!myDetails[0].temperaments[0]) { //agregamos "no-temperaments" a arreglos sin elementos dentro
-        myDetails[0].temperaments[0] = "no-temperaments"
+      let myDetails = action.payload;
+      if (!myDetails[0].temperaments[0]) {
+        myDetails[0].temperaments[0] = "no-temperaments";
       }
       return {
         ...state,
-        details: myDetails
+        details: myDetails,
       };
+
     default:
       return state;
   }
