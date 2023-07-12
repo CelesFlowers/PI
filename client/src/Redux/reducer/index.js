@@ -90,16 +90,28 @@ const rootReducer = (state = initialState, action) => {
       }
       return state;
 
-    case "ORDER_BY_WEIGHT":
-      const sortedWeight =
-        action.payload === "min_weight"
-          ? [...state.dogs].sort((a, b) => parseInt(a.weight[1]) - parseInt(b.weight[1]))
-          : [...state.dogs].sort((a, b) => parseInt(b.weight[1]) - parseInt(a.weight[1]));
+      case "ORDER_BY_WEIGHT":
+  const sortedWeight = [...state.dogs].sort((a, b) => {
+    const aMinWeight = parseInt(a.weight[0].split(',')[0]);
+    const bMinWeight = parseInt(b.weight[0].split(',')[0]);
 
-      return {
-        ...state,
-        dogs: sortedWeight,
-      };
+    // Verificar si aMinWeight es un número válido, de lo contrario, asignarle el valor 0
+    const parsedAMinWeight = isNaN(aMinWeight) ? 0 : aMinWeight;
+
+    // Verificar si bMinWeight es un número válido, de lo contrario, asignarle el valor 0
+    const parsedBMinWeight = isNaN(bMinWeight) ? 0 : bMinWeight;
+
+    return action.payload === "min_weight"
+      ? parsedAMinWeight - parsedBMinWeight
+      : parsedBMinWeight - parsedAMinWeight;
+  });
+
+  return {
+    ...state,
+    dogs: sortedWeight,
+  };
+
+      
 
     case "SHOW_DOG_DETAILS":
       let myDetails = action.payload;

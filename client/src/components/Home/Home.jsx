@@ -22,12 +22,11 @@ function Home() {
   const allTemperaments = useSelector((state) => state.temperaments);
 
   const [currentPage, setCurrentPage] = useState(1);
+  const [orderBy, setOrderBy] = useState("");
   const dogsPerPage = 8;
   const lastIndex = currentPage * dogsPerPage;
   const firstIndex = lastIndex - dogsPerPage;
   const currentDogs = allDogs.slice(firstIndex, lastIndex);
-
-  console.log(currentDogs);
 
   const paginado = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -54,6 +53,7 @@ function Home() {
   const handleOrderByWeight = (e) => {
     e.preventDefault();
     dispatch(OrderByWeight(e.target.value));
+    setOrderBy(e.target.value);
     setCurrentPage(1);
   };
 
@@ -74,7 +74,7 @@ function Home() {
             <div className={`${style.container_filters}`}>
               <select onChange={handleOrderByName}>
                 <option disabled selected defaultValue>
-                  Alphabetical order
+                  Alphabetical Order
                 </option>
                 <option value="A-Z">A-Z</option>
                 <option value="Z-A">Z-A</option>
@@ -82,7 +82,7 @@ function Home() {
 
               <select onChange={handleOrderByWeight}>
                 <option disabled selected defaultValue>
-                  Filter by weight
+                  Weight Order
                 </option>
                 <option value="max_weight">Max</option>
                 <option value="min_weight">Min</option>
@@ -90,7 +90,7 @@ function Home() {
 
               <select onChange={handleFilterByTemperament}>
                 <option disabled selected defaultValue>
-                  Temperaments
+                  Temperament Filter
                 </option>
                 <option value="Todos">All</option>
                 {allTemperaments?.map((temp) => (
@@ -102,7 +102,7 @@ function Home() {
 
               <select onChange={handleOrderBySource}>
                 <option disabled selected defaultValue>
-                  Source
+                  Source Filter
                 </option>
                 <option value="All">All</option>
                 <option value="Db">DB</option>
@@ -145,7 +145,7 @@ function Home() {
             dogsPerPage={dogsPerPage}
             allDogs={allDogs.length}
             paginado={paginado}
-            currentPage={currentPage} // Agregamos la prop currentPage
+            currentPage={currentPage}
           />
         </div>
       </div>
