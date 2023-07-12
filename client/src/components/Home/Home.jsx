@@ -12,38 +12,29 @@ import {
 } from "../../Redux/actions";
 import Card from "../Card/Card";
 import Paginate from "../Paginate/Paginate";
-import SearchBar from "../SearchBar/SearchBar"
+import SearchBar from "../SearchBar/SearchBar";
 
-import style from "../Home/Home.module.css"
+import style from "../Home/Home.module.css";
 
 function Home() {
   const dispatch = useDispatch();
-  const allDogs = useSelector(state => state.dogs); //valores del estado global de redux que requiero
-  const allTemperaments = useSelector(state => state.temperaments);
+  const allDogs = useSelector((state) => state.dogs);
+  const allTemperaments = useSelector((state) => state.temperaments);
 
   const [currentPage, setCurrentPage] = useState(1);
   const dogsPerPage = 8;
-  const lastIndex = currentPage * dogsPerPage; 
+  const lastIndex = currentPage * dogsPerPage;
   const firstIndex = lastIndex - dogsPerPage;
-  const currentDogs = allDogs.slice(firstIndex, lastIndex);//elementos a renderizar en la pagina, segun el valor de paginado
+  const currentDogs = allDogs.slice(firstIndex, lastIndex);
 
   console.log(currentDogs);
 
   const paginado = (pageNumber) => {
-    setCurrentPage(pageNumber)
+    setCurrentPage(pageNumber);
   };
 
-  // eslint-disable-next-line
-  const [orden, setOrden] = useState("");
-
-  useEffect(() => {
-    //acciones a depachar luego de montar el componente
-    dispatch(getAllDogs());
-    dispatch(getTemperaments());
-  }, [dispatch]);
-
   const handleFilterByTemperament = (e) => {
-    e.preventDefault();    
+    e.preventDefault();
     dispatch(FilterByTemperament(e.target.value));
     setCurrentPage(1);
   };
@@ -52,35 +43,34 @@ function Home() {
     e.preventDefault();
     dispatch(OrderByName(e.target.value));
     setCurrentPage(1);
-    setOrden(`Ordenado ${e.target.value}`);
   };
 
   const handleOrderBySource = (e) => {
     e.preventDefault();
     dispatch(OrderBySource(e.target.value));
-    setOrden(`Ordenado ${e.target.value}`);
+    setCurrentPage(1);
   };
 
   const handleOrderByWeight = (e) => {
     e.preventDefault();
     dispatch(OrderByWeight(e.target.value));
     setCurrentPage(1);
-    setOrden(`Ordenado ${e.target.value}`);
   };
+
+  useEffect(() => {
+    dispatch(getAllDogs());
+    dispatch(getTemperaments());
+  }, [dispatch]);
 
   return (
     <>
       <header className={`${style.header}`}>
         <div className={`${style.header_container_left}`}>
-
           <Link to="/">
-            <div className={`${style.logo}`}>DOGPEDIA</div> {/* logo del home */}
+            <div className={`${style.logo}`}>DOGPEDIA</div>
           </Link>
-          
           <div className={`${style.header_left}`}>
-
             <SearchBar />
-
             <div className={`${style.container_filters}`}>
               <select onChange={handleOrderByName}>
                 <option disabled selected defaultValue>
@@ -99,13 +89,15 @@ function Home() {
               </select>
 
               <select onChange={handleFilterByTemperament}>
-                  <option disabled selected defaultValue>Temperaments</option>
-                  <option value="Todos">All</option>
-                  {
-                    allTemperaments?.map(temp => (
-                        <option value={temp.name}  key={temp.id}>{temp.name}</option>
-                    ))
-                  }
+                <option disabled selected defaultValue>
+                  Temperaments
+                </option>
+                <option value="Todos">All</option>
+                {allTemperaments?.map((temp) => (
+                  <option value={temp.name} key={temp.id}>
+                    {temp.name}
+                  </option>
+                ))}
               </select>
 
               <select onChange={handleOrderBySource}>
@@ -116,12 +108,9 @@ function Home() {
                 <option value="Db">DB</option>
                 <option value="Api">API</option>
               </select>
-
             </div>
-            
           </div>
         </div>
-        {/* boton para agregar nuevos perros */}
         <div className={`${style.header_right}`}>
           <Link to="/dog">
             <button className={`${style.button_add_dog}`}>CREATE DOG</button>
@@ -131,25 +120,35 @@ function Home() {
 
       <hr />
 
-    <div className={style.main_container}>
-      <div className={style.container_cards}>
-        {currentDogs?.map((el) => {//validacion que existan los datos
-          return(
+      <div className={style.main_container}>
+        <div className={style.container_cards}>
+          {currentDogs?.map((el) => (
             <div className={`${style.container_card}`} key={el.id}>
-              <Link to={"/dog-detail/"+el.id}>
-                {
-                  <Card key={el.id} image={el.image} name={el.name} weight={el.weight} temperaments={el.temperaments[0].name ? el.temperaments.map(el => el.name) : el.temperaments}/>
-                  //si temperaments viene en un formato distinto desde la BD
-                }
+              <Link to={"/dog-detail/" + el.id}>
+                <Card
+                  key={el.id}
+                  image={el.image}
+                  name={el.name}
+                  weight={el.weight}
+                  temperaments={
+                    el.temperaments[0]?.name
+                      ? el.temperaments.map((el) => el.name)
+                      : el.temperaments
+                  }
+                />
               </Link>
-            </div>      
-          )
-        })}
+            </div>
+          ))}
+        </div>
+        <div className={`${style.pagination}`}>
+          <Paginate
+            dogsPerPage={dogsPerPage}
+            allDogs={allDogs.length}
+            paginado={paginado}
+            currentPage={currentPage} // Agregamos la prop currentPage
+          />
+        </div>
       </div>
-      <div className={`${style.pagination}`}>
-        <Paginate dogsPerPage={dogsPerPage} allDogs={allDogs.length} paginado={paginado}/> {/*el valor de la funcion de paginado aumenta segun el bucle for en el componente Paginate*/}
-      </div>
-    </div>
     </>
   );
 }

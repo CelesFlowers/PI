@@ -1,24 +1,26 @@
-.nav_container{
-
+.ul_container {
+  padding: 0 0 5rem 0.5rem;
 }
 
-.ul_container{
-    padding: 0 0 5rem 0.5rem;
+.li_container {
+  list-style: none;
+  float: left;
+  margin: 0.2rem;
+  text-align: center;
 }
 
-.li_container{
-    list-style: none;
-    float: left;
-    margin: 0.2rem;
-    text-align: center;
+.button_pagination {
+  color: rgb(249, 107, 13);
+  background-color: white;
+  width: 2.1rem;
+  padding: 0.5rem 0.7rem;
+  border-radius: 25%;
+  border: 1px solid rgb(249, 107, 13);
+  text-align: center;
+  cursor: pointer;
 }
 
-.li_container button{
-    color: rgb(249, 107, 13);
-    background-color: white;
-    width: 2.1rem;
-    padding: 0.5rem 0.7rem;
-    border-radius: 25%;
-    border: 1px solid rgb(249, 107, 13);
-    text-align: center;
-}
+.button_pagination.current_page {
+    background-color: rgb(249, 107, 13);
+    color: white;
+  }
